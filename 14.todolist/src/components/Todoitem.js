@@ -17,7 +17,8 @@ const Todoitem = ({isDone, content, date}) => {
             <input type='checkbox' />
             <span>{content}</span> 
             <span>{new Date(date).toLocaleDateString()}</span>
-            <button>삭제</button>
+            {/* 삭제버튼 눌렀을 때 삭제 만들기 */}
+            <button className="deleteButton">삭제</button>
         </div>
     )
 }
