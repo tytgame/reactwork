@@ -43,9 +43,13 @@ function App() {
       id : idRef.current++,
       isDone : false,
       content : content,
-      date : new Date().getTime()
-    }
-    setTodos([newItem, ...todos])
+      date : new Date().getTime(),
+    };
+    setTodos([newItem, ...todos]);
+  };
+
+  const onDelete = (id) => {
+      setTodos(todos.filter((todo)=> todo.id !== id));
   }
 
   // 삭제시 isDone의 체크박스를 true로 바꾸기
@@ -66,7 +70,7 @@ function App() {
     <div className="App">
       <Header/>
       <Editor onCreate={onCreate}/>
-      <List todos={todos}/>
+      <List todos={todos} onDelete={onDelete}/>
     </div>
   );
 }

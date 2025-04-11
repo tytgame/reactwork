@@ -1,7 +1,7 @@
 import Todoitem from "./Todoitem";
 import { useState } from "react";
 
-const List = ({todos}) => {
+const List = ({todos, onDelete}) => {
     const [search, setSearch] = useState('');
 
     const getSearchData = () => {
@@ -19,14 +19,13 @@ const List = ({todos}) => {
             <input type="text" placeholder="검색어를 입력하세요" 
                 onChange={(e) => {
                     setSearch(e.target.value);
-                }}/>
+                }}
+                />
             <div className='todos_wrapper'>
                 {
-                    getSearchData().map((todo) =>
-                        // <Todoitem todo = {todo} />
-                        <Todoitem {...todo} />
-                    )
-                }
+                    getSearchData().map((todo) => (
+                        <Todoitem key={todo.id} {...todo} onDelete={onDelete} />
+                    ))}
             </div>
         </div>
     )
