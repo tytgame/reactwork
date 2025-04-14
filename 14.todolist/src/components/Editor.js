@@ -8,7 +8,7 @@ const Editor = ({onCreate}) => {
         <div className='Editor'>
             <input value={content} ref={contentRef} onChange={(e) => { setContent(e.target.value)} }/>&emsp;
             <button onClick={() => {
-                if(content == '') {
+                if(content === '') {
                     contentRef.current.focus(); 
                     return;
                 }

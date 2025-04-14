@@ -2,8 +2,9 @@ import './App.css';
 import Header from './components/Header';
 import Editor from './components/Editor';
 import List from './components/List';
-import { useState, useRef } from 'react';
-
+import { useState, useRef, useEffect } from 'react';
+// import Todoitem from './components/Todoitem';
+/*
 const tmpData = [
   {
     id : 0,
@@ -24,10 +25,23 @@ const tmpData = [
     date : new Date().getTime()
   },
 ]
-
+*/
 function App() {
-  const [todos, setTodos] = useState(tmpData);
-
+  
+  const getInitialTodos = () => {
+    const data = localStorage.getItem("todos");
+    if (!data) return [];
+    return JSON.parse(data);
+  };
+  
+  const [todos, setTodos] = useState(getInitialTodos);
+  const [viewType, setViewType] = useState("all");
+  const [isDark, setIsDark] = useState(false);
+  
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+  
   /*
   * useRef()
     : 변경되는 값 저장
@@ -49,13 +63,36 @@ function App() {
   };
 
   const onDelete = (id) => {
-      setTodos(todos.filter((todo)=> todo.id !== id));
+      // const result = todos.filter((todo)=>todo.id !== id);
+      // setTodos(result);
+
+      setTodos(todos.filter((todo) => todo.id !== id));
+  }
+  // 체크박스 클릭시 isDone 값을 true <-> false 로 상태 변경하기
+  
+  const onToggle = (id) => {
+      setTodos(
+        todos.map((todo) => 
+          todo.id === id 
+        ? {...todo, isDone: !todo.isDone}
+        : todo
+      )
+    );
   }
 
+
+  const getFilteredTodos = () => {
+    if(viewType === 'done') return todos.filter(todo => todo.isDone);
+    if(viewType === 'notYet') return todos.filter(todo => !todo.isDone);
+    return todos; 
+  }
+
+
   // 삭제시 isDone의 체크박스를 true로 바꾸기
+  /*
   const onUpdate = (targetId) => {
     setTodos (todos.map((todo) => {
-      if(todo.id == targetId) {
+      if(todo.id === targetId) {
         return {
           ...todo,
           isDone : !todo.isDone
@@ -64,13 +101,21 @@ function App() {
       return todo;
     })
   )}
-  
+  */
 
   return (
-    <div className="App">
+    <div className={`App ${isDark ? 'dark' : ''}`}>
+      <button onClick={() => {
+        setIsDark(!isDark)
+      }}>{isDark ? "라이트모드" : "다크모드"}</button>
       <Header/>
       <Editor onCreate={onCreate}/>
-      <List todos={todos} onDelete={onDelete}/>
+      <div className='filter-buttons'>
+        <button onClick={() => setViewType("all")}>전체</button>
+        <button onClick={() => setViewType("done")}>완료</button>
+        <button onClick={() => setViewType("notYet")}>미완료</button>
+      </div>
+      <List todos={getFilteredTodos()} onDelete={onDelete} onToggle={onToggle}/>
     </div>
   );
 }

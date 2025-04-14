@@ -1,11 +1,11 @@
 import Todoitem from "./Todoitem";
 import { useState } from "react";
 
-const List = ({todos, onDelete}) => {
+const List = ({todos, onDelete, onToggle}) => {
     const [search, setSearch] = useState('');
 
     const getSearchData = () => {
-        if(search == "") {
+        if(search === "") {
             return todos;
         }
         return todos.filter((todo) => 
@@ -22,9 +22,8 @@ const List = ({todos, onDelete}) => {
                 }}
                 />
             <div className='todos_wrapper'>
-                {
-                    getSearchData().map((todo) => (
-                        <Todoitem key={todo.id} {...todo} onDelete={onDelete} />
+                { getSearchData().map((todo) => (
+                        <Todoitem key={todo.id} {...todo} onDelete={onDelete} onToggle={onToggle}/>
                     ))}
             </div>
         </div>

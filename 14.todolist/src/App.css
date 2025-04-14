@@ -3,9 +3,29 @@
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  color: #000000;
+  min-height: 100vh;
+  transition: 0.3s ease;
+}
+
+.App.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.App.dark input {
+  background-color: #1e1e1e;
+  color: white;
+  border: 1px solid #555;
+}
+
+.App.dark button {
+  background-color: #333;
+  color: white;
 }
 
 /* Header 스타일 */
@@ -100,7 +120,7 @@
   margin-right: 10px;
 }
 
-.Todoitem button {
+.deleteButton {
   padding: 5px 10px;
   font-size: 14px;
   background-color: #f44336;
@@ -110,6 +130,7 @@
   cursor: pointer;
 }
 
-.Todoitem button:hover {
+.deleteButton:hover {
   background-color: #e53935;
 }
+
