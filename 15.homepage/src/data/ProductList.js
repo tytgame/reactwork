@@ -18,6 +18,5 @@ const productList = [
       price : 1400000
     }
 ]
-let num1 = 1;
 
-  export { productList, num1 };
+  export { productList };
