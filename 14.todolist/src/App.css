@@ -43,6 +43,14 @@
   color: #777;
 }
 
+.App.dark .Header h2 {
+  color: #ffffff;
+}
+
+.App.dark .Header h3 {
+  color: #b3b3b3;
+}
+
 /* Editor 영역 스타일 */
 .Editor {
   display: flex;
@@ -98,6 +106,14 @@
   border: 1px solid #ddd;
 }
 
+.App.dark .List {
+  background-color: #1e1e1e;
+}
+
+.App.dark .List h4 {
+  color: #ffffff;
+}
+
 /* Todo item wrapper */
 .todos_wrapper {
   display: flex;
@@ -132,5 +148,14 @@
 
 .deleteButton:hover {
   background-color: #e53935;
+}
+
+.App.dark .Todoitem {
+  background-color: #2d2d2d;
+  border: 1px solid #404040;
+}
+
+.App.dark .todos_wrapper {
+  color: #e0e0e0;
 }
 

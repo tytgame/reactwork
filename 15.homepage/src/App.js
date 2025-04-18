@@ -51,9 +51,9 @@ function App() {
         <Route path='/detail/:id' element={<Detail clothes={productList}/>}/>
       </Routes>
 
-      <Link to="/">홈</Link>&emsp;
-      <Link to="/detail">상세페이지</Link>&emsp;
-      <Link to="/cart">장바구니</Link>
+      <Link to="/" className='mainButtons'>홈</Link>&emsp;
+      <Link to="/detail" className='mainButtons'>상세페이지</Link>&emsp;
+      <Link to="/cart" className='mainButtons'>장바구니</Link>
 
       {/* 백그라운드로 넣을 때 */}
       {/* <div className='main-bg'></div> */}
@@ -65,7 +65,7 @@ Bg}></img> */}
 
       {/* 배포할 때 기존 url 하위에 폴더를 가져와야 되므로
           기존 url을 얻어와서 넣어 준다 */}
-      <img src = {backgroundImg}></img>
+      <img src = {backgroundImg}></img> 
 
         <Container>
           <Row>
